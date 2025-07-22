@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bourahla Amar Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --dark-bg: #181C23;
+            --darker-bg: #1C1C2D;
+            --blue-accent: #4285F4;
+            --white: #FFFFFF;
+            --light-gray: #E0E0E0;
+            --dark-gray: #9E9E9E;
+            --card-bg: #263238;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--white);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        
+        section {
+            margin-top: 20px;   /* Reduce this value */
+            margin-bottom: 20px; /* Reduce this value */
+            /* Or remove margin if not needed */
+        }
+        
+        h1, h2, h3 {
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        h1 {
+            font-size: 36px;
+        }
+        
+        h2 {
+            font-size: 28px;
+            margin-bottom: 24px;
+        }
+        
+        p {
+            color: var(--light-gray);
+            font-size: 16px;
+            margin-bottom: 16px;
+        }
+        
+        img {
+          width: 100%;
+          height: auto;
+          object-fit: contain; /* or 'cover' for a different effect */
+          display: block;
+        }
+        
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            min-height: 380px;
+            padding: 80px 0;
+        }
+        
+        .hero-content {
+            flex: 1;
+        }
+        
+        .hero-image {
+          position: relative;
+          width: 250px;      /* Adjust as needed */
+          height: 250px;     /* Adjust as needed */
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          border-radius: 50%; /* Makes it circular if desired */
+          background: #222;   /* Optional: background color */
+        }
+        
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* or 'cover' for a different effect */
+            border-radius: 50%;  /* Matches .hero-image if circular */
+            display: block;
+        }
+        
+        .profile-glow {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 260px;    /* Slightly larger than .hero-image */
+          height: 260px;
+          transform: translate(-50%, -50%);
+          border-radius: 50%;
+          z-index: 1;
+          box-shadow: 0 0 40px 15px rgba(0, 150, 255, 0.5); /* Soft blue glow */
+          pointer-events: none; /* Allows clicks to pass through */
+        }
+        
+        .hello-text {
+            display: flex;
+            align-items: center;
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+        
+        .blue-dot {
+            width: 10px;
+            height: 10px;
+            background-color: var(--blue-accent);
+            border-radius: 50%;
+            margin-left: 8px;
+        }
+        
+        .name {
+            font-size: 36px;
+            margin-bottom: 8px;
+        }
+        
+        .title {
+            font-size: 28px;
+            color: var(--blue-accent);
+            margin-bottom: 24px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 16px;
+            margin-top: 24px;
+        }
+        
+        .social-icon {
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Skills Section */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        
+        .skill-chip {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--card-bg);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        
+        .skill-chip img {
+            width: 20px;
+            height: 20px;
+            margin-right: 6px;
+        }
+        
+        /* Services Section */
+        .services-container {
+            display: flex;
+            gap: 16px;
+            margin-top: 20px;
+        }
+        
+        .service-card {
+            flex: 1;
+            background-color: var(--blue-accent);
+            padding: 24px;
+            border-radius: 16px;
+        }
+        
+        .service-card i {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+        
+        /* Projects Section */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+        
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+        
+        .project-content {
+            padding: 16px;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 12px 0;
+        }
+        
+        .tech-tag {
+            background-color: #37474F;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        
+        .view-btn {
+            background: none;
+            border: none;
+            color: var(--blue-accent);
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            overflow: auto;
+        }
+        
+        .modal-content {
+            background-color: var(--card-bg);
+            margin: 5% auto;
+            padding: 24px;
+            border-radius: 8px;
+            max-width: 800px;
+            width: 90%;
+        }
+        
+        .close-btn {
+            color: var(--white);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close-btn:hover {
+            color: var(--blue-accent);
+        }
+        
+        .modal-images {
+            display: flex;
+            overflow-x: auto;
+            gap: 8px;
+            padding: 8px 0;
+            margin-bottom: 16px;
+        }
+        
+        .modal-images img {
+            height: 100px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        
+        .modal-main-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            margin-bottom: 16px;
+        }
+        
+        /* Example CSS for background image */
+        .your-image-class {
+          background-image: url('your-image.jpg');
+          background-size: contain; /* or 'cover' */
+          background-position: center;
+          background-repeat: no-repeat;
+          width: 100%;
+          height: 300px; /* set as needed */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 0;
+            }
+            
+            .hello-text {
+                justify-content: center;
+            }
+            
+            .hero-image {
+                margin-top: 40px;
+            }
+            
+            .services-container {
+                flex-direction: column;
+            }
+            
+            .projects-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hello-text">
+                    <span>Hello</span>
+                    <div class="blue-dot"></div>
+                </div>
+                <h1 class="name">I'm Bourahla Amar</h1>
+                <h2 class="title">Full Stack Flutter Developer</h2>
+                
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/omar-bourahla-b3b25a311/" target="_blank">
+                        <img src="assets/linkedin.png" alt="LinkedIn" class="social-icon">
+                    </a>
+                    <a href="#" onclick="copyEmail()">
+                        <img src="assets/gmail.png" alt="Gmail" class="social-icon">
+                    </a>
+                    <a href="https://www.upwork.com/freelancers/~01d1432d1d9e72c56c" target="_blank">
+                        <img src="assets/upwork.png" alt="Upwork" class="social-icon">
+                    </a>
+                    <a href="https://www.instagram.com/omar__bourahla/" target="_blank">
+                        <img src="assets/instagram.png" alt="Instagram" class="social-icon">
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="profile-glow"></div>
+                <img src="assets/profile.png" alt="Profile" class="profile-image">
+            </div>
+        </section>
+        
+        <!-- Skills Section -->
+        <section>
+            <h2>Skills</h2>
+            <div class="skills-container">
+                <div class="skill-chip">
+                    <img src="assets/skills/flutter.png" alt="Flutter">
+                    <span>Flutter</span>
+                </div>
+                <div class="skill-chip">
+                    <img src="assets/skills/nodejs.png" alt="Node.js">
+                    <span>Node.js</span>
+                </div>
+                <div class="skill-chip">
+                    <img src="assets/skills/sequelize.png" alt="Sequelize">
+                    <span>Sequelize</span>
+                </div>
+                <div class="skill-chip">
+                    <img src="assets/skills/mysql.png" alt="MySQL">
+                    <span>MySQL</span>
+                </div>
+                <div class="skill-chip">
+                    <img src="assets/skills/sqlserver.png" alt="SQL Server">
+                    <span>SqlServer</span>
+                </div>
+                <div class="skill-chip">
+                    <img src="assets/skills/firebase.png" alt="Firebase">
+                    <span>Firebase(FCM)</span>
+                </div>
+                <div class="skill-chip">
+                    <img src="assets/skills/git.png" alt="Git">
+                    <span>Git</span>
+                </div>
+                <div class="skill-chip">
+                    <img src="assets/skills/github.png" alt="GitHub">
+                    <span>Github</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Services Section -->
+        <section>
+            <h2>Services</h2>
+            <div class="services-container">
+                <div class="service-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Mobile App Development</h3>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-server"></i>
+                    <h3>BackEnd Development</h3>
+                </div>
+            </div>
+        </section>
+        
+        <!-- About Me Section -->
+        <section>
+            <h2>About me</h2>
+            <p>
+                I am a versatile Software Developer with experience in mobile application development. I excel in both team environments and independent roles, bringing strong skills in backend development and database design and management. I work in a smart, organized, and efficient manner, with a proven ability to adapt to changing requirements and handle challenges positively. I am committed to professional ethics, quality work, and continuous learning and growth. My goal is to deliver robust and scalable solutions while constantly evolving as a developer.
+            </p>
+        </section>
+        
+        <!-- Education Section -->
+        <section>
+            <h2>Education</h2>
+            <p>
+                <strong>Master degree in Information Systems and Software Engineering</strong><br>
+                UNIVERSITY MOHAMED BOUDIAF MSILA 2020 - 2025
+            </p>
+        </section>
+        
+        <!-- Projects Section -->
+        <section>
+            <h2>Some projects</h2>
+            <div class="projects-container">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <img src="assets/ProgNet/2.PNG" alt="ProgNet" class="project-image" onclick="openModal('ProgNet', 'A social network platform built for the university community, connecting students, teachers, and heads of departments. The app provides a centralized space for academic and social interaction within the university. It includes a news feed for university and department updates, classroom management features where teachers can create and manage classes while students enroll and participate, and event management tools for heads of departments to organize academic and social events. Teachers can also share learning resources directly with their students, and all users can communicate securely through private messaging.', ['Flutter', 'Node.js', 'MySQL', 'Sequelize', 'Firebase(FCM)', 'Supabase', 'VPS(hosting)'], ['assets/ProgNet/1.PNG', 'assets/ProgNet/2.PNG', 'assets/ProgNet/3.PNG', 'assets/ProgNet/4.PNG', 'assets/ProgNet/5.PNG', 'assets/ProgNet/6.PNG', 'assets/ProgNet/7.PNG', 'assets/ProgNet/8.PNG', 'assets/ProgNet/9.PNG'])">
+                    <div class="project-content">
+                        <h3>ProgNet</h3>
+                        <p>A social network platform built for the university community...</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Flutter</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MySQL</span> 
+                            <span class="tech-tag">Sequelize</span>
+                            <span class="tech-tag">Firebase(FCM)</span>
+                            <span class="tech-tag">Supabase</span>
+                            <span class="tech-tag">VPS(hosting)</span>
+                        </div>
+                        <button class="view-btn" onclick="openModal('ProgNet', 'A social network platform built for the university community, connecting students, teachers, and heads of departments. The app provides a centralized space for academic and social interaction within the university. It includes a news feed for university and department updates, classroom management features where teachers can create and manage classes while students enroll and participate, and event management tools for heads of departments to organize academic and social events. Teachers can also share learning resources directly with their students, and all users can communicate securely through private messaging.', ['Flutter', 'Node.js', 'MySQL', 'Sequelize', 'Firebase(FCM)', 'Supabase', 'VPS(hosting)'], ['assets/ProgNet/1.PNG', 'assets/ProgNet/2.PNG', 'assets/ProgNet/3.PNG', 'assets/ProgNet/4.PNG', 'assets/ProgNet/5.PNG', 'assets/ProgNet/6.PNG', 'assets/ProgNet/7.PNG', 'assets/ProgNet/8.PNG', 'assets/ProgNet/9.PNG'])">View Project</button>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <img src="assets/ProgAdmin/1.PNG" alt="ProgAdmin" class="project-image" onclick="openModal('ProgAdmin', 'A dashboard for heads of departments and admins, built as part of the ProgNet platform. It allows admins to manage user accounts, change roles, and oversee academic and social activities within their department.', ['Flutter', 'Node.js', 'MySQL', 'Sequelize', 'Firebase(FCM)', 'Supabase', 'VPS(hosting)'], ['assets/ProgAdmin/1.PNG', 'assets/ProgAdmin/2.PNG', 'assets/ProgAdmin/3.PNG', 'assets/ProgAdmin/4.PNG', 'assets/ProgAdmin/5.PNG'])">
+                    <div class="project-content">
+                        <h3>ProgAdmin</h3>
+                        <p>A dashboard for heads of departments and admins...</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Flutter</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MySQL</span> 
+                            <span class="tech-tag">Sequelize</span>
+                            <span class="tech-tag">Firebase(FCM)</span>
+                            <span class="tech-tag">Supabase</span>
+                            <span class="tech-tag">VPS(hosting)</span>
+                        </div>
+                        <button class="view-btn" onclick="openModal('ProgAdmin', 'A dashboard for heads of departments and admins, built as part of the ProgNet platform. It allows admins to manage user accounts, change roles, and oversee academic and social activities within their department.', ['Flutter', 'Node.js', 'MySQL', 'Sequelize', 'Firebase(FCM)', 'Supabase', 'VPS(hosting)'], ['assets/ProgAdmin/1.PNG', 'assets/ProgAdmin/2.PNG', 'assets/ProgAdmin/3.PNG', 'assets/ProgAdmin/4.PNG', 'assets/ProgAdmin/5.PNG'])">View Project</button>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <img src="assets/webetu/4.jpg" alt="webetu" class="project-image" onclick="openModal('webetu', 'App built in competition that shows the student data like progress and more. The app interacts with the ministry backend to get the real student data. It has a small size and fast data loading.', ['Flutter'], ['assets/webetu/1.jpg', 'assets/webetu/2.jpg', 'assets/webetu/3.jpg', 'assets/webetu/4.jpg', 'assets/webetu/5.jpg', 'assets/webetu/6.jpg'])">
+                    <div class="project-content">
+                        <h3>webetu</h3>
+                        <p>App built in competition that shows the student data...</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Flutter</span>
+                        </div>
+                        <button class="view-btn" onclick="openModal('webetu', 'App built in competition that shows the student data like progress and more. The app interacts with the ministry backend to get the real student data. It has a small size and fast data loading.', ['Flutter'], ['assets/webetu/1.jpg', 'assets/webetu/2.jpg', 'assets/webetu/3.jpg', 'assets/webetu/4.jpg', 'assets/webetu/5.jpg', 'assets/webetu/6.jpg'])">View Project</button>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="project-card">
+                    <img src="assets/CRMS/image4.png" alt="Civil Registry Management Software" class="project-image" onclick="openModal('Civil Registry Management Software', 'A modern Civil Registry Management Software built using C#, developed during an internship.', ['C#', 'SqlServer'], ['assets/CRMS/image1.png', 'assets/CRMS/image2.png', 'assets/CRMS/image3.png', 'assets/CRMS/image4.png', 'assets/CRMS/image5.png'])">
+                    <div class="project-content">
+                        <h3>Civil Registry Management Software</h3>
+                        <p>A modern Civil Registry Management Software...</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">C#</span>
+                            <span class="tech-tag">SqlServer</span>
+                        </div>
+                        <button class="view-btn" onclick="openModal('Civil Registry Management Software', 'A modern Civil Registry Management Software built using C#, developed during an internship.', ['C#', 'SqlServer'], ['assets/CRMS/image1.png', 'assets/CRMS/image2.png', 'assets/CRMS/image3.png', 'assets/CRMS/image4.png', 'assets/CRMS/image5.png'])">View Project</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Project Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title"></h2>
+            <div class="modal-images" id="modal-images-container"></div>
+            <img id="modal-main-image" class="modal-main-image">
+            <p id="modal-description"></p>
+            <p><strong>Technologies:</strong> <span id="modal-technologies"></span></p>
+        </div>
+    </div>
+    
+    <script>
+        // Copy email to clipboard
+        function copyEmail() {
+            navigator.clipboard.writeText('omarbourahla111@gmail.com');
+            alert('Gmail copied to clipboard!');
+        }
+        
+        // Modal functions
+        function openModal(title, description, technologies, images) {
+            const modal = document.getElementById('projectModal');
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-description').textContent = description;
+            document.getElementById('modal-technologies').textContent = technologies.join(', ');
+            
+            const imagesContainer = document.getElementById('modal-images-container');
+            imagesContainer.innerHTML = '';
+            
+            images.forEach(image => {
+                const img = document.createElement('img');
+                img.src = image;
+                img.alt = title;
+                img.onclick = () => {
+                    document.getElementById('modal-main-image').src = image;
+                };
+                imagesContainer.appendChild(img);
+            });
+            
+            // Set first image as main image
+            if (images.length > 0) {
+                document.getElementById('modal-main-image').src = images[0];
+            }
+            
+            modal.style.display = 'block';
+        }
+        
+        function closeModal() {
+            document.getElementById('projectModal').style.display = 'none';
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('projectModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
